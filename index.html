@@ -128,17 +128,14 @@ button{
 
 <div class="container">
 
-    <!-- Hidden Admin Button -->
     <button class="admin-btn" onclick="adminLogin()">⚙</button>
 
-    <!-- Page 1 -->
     <div class="page active">
         <h1>Hey Shaunn ❤️</h1>
         <p>I made something special for you ✨</p>
         <button onclick="nextPage()">Open</button>
     </div>
 
-    <!-- Question 1 -->
     <div class="page">
         <h1>Question 1 💌</h1>
         <p>From which moment you fell in love with me?</p>
@@ -149,7 +146,6 @@ button{
         </div>
     </div>
 
-    <!-- Question 2 -->
     <div class="page">
         <h1>Question 2 💞</h1>
         <p>What is your best moments with me?</p>
@@ -160,7 +156,6 @@ button{
         </div>
     </div>
 
-    <!-- Poem -->
     <div class="page">
         <h1>For You 🥹</h1>
         <p class="poem">
@@ -179,15 +174,13 @@ button{
         </div>
     </div>
 
-    <!-- Message -->
     <div class="page">
         <h1>One More Thing ❤️</h1>
         <p>
 Hii Shaunn... I'm Varun ❤️<br><br>
 idha solliye aaganum nee avloo alagu 
 inga yaarum ivlo alaga oru...pchhh....
-ivloo alaga paathuruka maatanga..
-And I'm love with youu❤️😌<br><br>
+ivloo alaga paathuruka maatanga..😌<br><br>
 And I'm love with youu ❤️
         </p>
         <div class="nav">
@@ -196,7 +189,6 @@ And I'm love with youu ❤️
         </div>
     </div>
 
-    <!-- Final Question -->
     <div class="page">
         <h1>Final Question 💘</h1>
         <p>Will you be my Valentine?</p>
@@ -248,7 +240,7 @@ function saveAnswers(){
 function yesClicked(){
     saveAnswers();
     localStorage.setItem("val_choice", "Yes");
-    alert("Yayyy ❤️");
+    alert("Varun is excited ❤️🥹");
 }
 
 const noBtn = document.getElementById("noBtn");
@@ -269,7 +261,7 @@ noBtn.addEventListener("click", () => {
 
 function adminLogin(){
     const pass = prompt("Enter admin password:");
-    if(pass === "varun123"){   // change this password
+    if(pass === "varun123"){
         showAnswers();
     } else {
         alert("Wrong password!");
