@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:420px;
+    height:540px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    position:relative;
+    overflow:hidden;
+    padding:25px;
+    text-align:center;
+}
+
+.page{
+    position:absolute;
+    inset:0;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:0.5s;
+    opacity:0;
+    transform:translateX(100%);
+}
+
+.page.active{
+    opacity:1;
+    transform:translateX(0);
+}
+
+h1{
+    font-family:'Pacifico', cursive;
+    color:#ff4d6d;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:15px;
+    margin:10px 0;
+    line-height:1.5;
+}
+
+textarea{
+    width:100%;
+    height:80px;
+    margin-top:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    padding:10px;
+    resize:none;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d6d;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.nav{
+    position:absolute;
+    bottom:15px;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:0 25px;
+}
+
+.poem{
+    white-space:pre-line;
+    font-size:14px;
+}
+
+.valentine-buttons{
+    margin-top:20px;
+    position:relative;
+    height:80px;
+}
+
+#noBtn{
+    position:absolute;
+    left:55%;
+}
+
+.admin-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:none;
+    color:#999;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Hidden Admin Button -->
+    <button class="admin-btn" onclick="adminLogin()">⚙</button>
+
+    <!-- Page 1 -->
+    <div class="page active">
+        <h1>Hey Shaunn ❤️</h1>
+        <p>I made something special for you ✨</p>
+        <button onclick="nextPage()">Open</button>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="page">
+        <h1>Question 1 💌</h1>
+        <p>From which moment you fell in love with me?</p>
+        <textarea id="answer1" placeholder="Type your answer..."></textarea>
+        <div class="nav">
+            <button onclick="prevPage()">Back</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="page">
+        <h1>Question 2 💞</h1>
+        <p>What is your best moments with me?</p>
+        <textarea id="answer2" placeholder="Type your answer..."></textarea>
+        <div class="nav">
+            <button onclick="prevPage()">Back</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <!-- Poem -->
+    <div class="page">
+        <h1>For You 🥹</h1>
+        <p class="poem">
+மாறாத இன்பத்து பாலாக நான் 😙
+தீராத தீக்காமம் ஒன்றாக Nee 🫶🏾
+தூங்காத உன் கண்ணின் கனவாக நான் 🙈
+தூரத்தில் இருந்தாலும் பிரியாத நீ 🥹❤‍🩹
+வாசத்தின் வாசலில் தோரணம் நான் 🫣
+வார்த்தைகள் தித்திக்கும் காரணம் நீ 😭🫵🏼
+யாசித்து நீ கேட்ட இரவாக நான் 🫠
+யாருக்கும் தெரியாத உறவாக Nee !
+        </p>
+        <div class="nav">
+            <button onclick="prevPage()">Back</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <!-- Message -->
+    <div class="page">
+        <h1>One More Thing ❤️</h1>
+        <p>
+Hii Shaunn... I'm Varun ❤️<br><br>
+Nee avloo alagu 😌<br><br>
+And I'm love with youu ❤️
+        </p>
+        <div class="nav">
+            <button onclick="prevPage()">Back</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <!-- Final Question -->
+    <div class="page">
+        <h1>Final Question 💘</h1>
+        <p>Will you be my Valentine?</p>
+
+        <div class="valentine-buttons">
+            <button onclick="yesClicked()">Yes 💖</button>
+            <button id="noBtn">No 🙃</button>
+        </div>
+
+        <div class="nav">
+            <button onclick="prevPage()">Back</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+let pages = document.querySelectorAll(".page");
+let currentPage = 0;
+
+function showPage(index){
+    pages.forEach(p => p.classList.remove("active"));
+    pages[index].classList.add("active");
+}
+
+function nextPage(){
+    saveAnswers();
+    if(currentPage < pages.length - 1){
+        currentPage++;
+        showPage(currentPage);
+    }
+}
+
+function prevPage(){
+    if(currentPage > 0){
+        currentPage--;
+        showPage(currentPage);
+    }
+}
+
+function saveAnswers(){
+    const a1 = document.getElementById("answer1")?.value;
+    const a2 = document.getElementById("answer2")?.value;
+
+    if(a1) localStorage.setItem("val_answer1", a1);
+    if(a2) localStorage.setItem("val_answer2", a2);
+}
+
+function yesClicked(){
+    saveAnswers();
+    localStorage.setItem("val_choice", "Yes");
+    alert("Yayyy ❤️");
+}
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    const container = document.querySelector(".container");
+    const maxX = container.clientWidth - noBtn.clientWidth;
+    const maxY = container.clientHeight - noBtn.clientHeight;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+});
+
+noBtn.addEventListener("click", () => {
+    alert("Oops 😝 You are not allowed to click this!");
+    localStorage.setItem("val_choice", "Tried to click No");
+});
+
+function adminLogin(){
+    const pass = prompt("Enter admin password:");
+    if(pass === "varun123"){   // change this password
+        showAnswers();
+    } else {
+        alert("Wrong password!");
+    }
+}
+
+function showAnswers(){
+    const a1 = localStorage.getItem("val_answer1") || "No answer";
+    const a2 = localStorage.getItem("val_answer2") || "No answer";
+    const choice = localStorage.getItem("val_choice") || "No response";
+
+    alert(
+        "Saved Answers 💌\n\n" +
+        "Q1: " + a1 + "\n\n" +
+        "Q2: " + a2 + "\n\n" +
+        "Choice: " + choice
+    );
+}
+</script>
+
+</body>
+</html>
