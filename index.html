@@ -121,6 +121,26 @@ button{
     color:#999;
     font-size:12px;
 }
+
+/* Custom Popup */
+.popup-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:20px;
+}
+
+.popup-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    font-size:20px;
+    color:#ff4d6d;
+    font-weight:600;
+}
 </style>
 </head>
 
@@ -180,7 +200,8 @@ button{
 Hii Shaunn... I'm Varun ❤️<br><br>
 idha solliye aaganum nee avloo alagu 
 inga yaarum ivlo alaga oru...pchhh....
-ivloo alaga paathuruka maatanga..😌<br><br>
+ivloo alaga paathuruka maatanga..
+And I'm love with youu❤️😌<br><br>
 And I'm love with youu ❤️
         </p>
         <div class="nav">
@@ -240,7 +261,22 @@ function saveAnswers(){
 function yesClicked(){
     saveAnswers();
     localStorage.setItem("val_choice", "Yes");
-    alert("Varun is excited ❤️🥹");
+
+    const container = document.querySelector(".container");
+
+    const overlay = document.createElement("div");
+    overlay.className = "popup-overlay";
+
+    const box = document.createElement("div");
+    box.className = "popup-box";
+    box.innerHTML = "💖 Varun is happy 💖";
+
+    overlay.appendChild(box);
+    container.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+    }, 3000);
 }
 
 const noBtn = document.getElementById("noBtn");
@@ -252,11 +288,6 @@ noBtn.addEventListener("mouseover", () => {
 
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
-});
-
-noBtn.addEventListener("click", () => {
-    alert("Oops 😝 You are not allowed to click this!");
-    localStorage.setItem("val_choice", "Tried to click No");
 });
 
 function adminLogin(){
